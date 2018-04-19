@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { UtilsService } from '../../providers/utils/utils.service';
 
+
 @Pipe({
   name: 'thaiDate',
 })
 export class ThaiDatePipe implements PipeTransform {
-
   constructor(private utilsService: UtilsService) { }
 
   transform(value: any, displayType: any): any {
