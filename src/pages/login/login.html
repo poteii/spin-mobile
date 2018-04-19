@@ -1,0 +1,37 @@
+<ion-header>
+</ion-header>
+
+<ion-content no-bounce scroll="false" class="background">
+  <div>
+    <div text-center>
+      <div class="row justify-content-center  content-header">
+        <img src="./assets/imgs/brand/logo_L_white.png" height="80px">
+      </div>
+    </div>
+
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-list>
+        <ion-item text-center>
+
+          <ion-label>
+            <i class="fas fa-user"></i>
+          </ion-label>
+          <ion-input text-left formControlName="username" placeholder="ชื่อผู้ใช้" name="username" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item text-center>
+          <ion-label>
+            <i class="fas fa-lock"></i>
+          </ion-label>
+          <ion-input text-left formControlName="password" placeholder="รหัสผ่าน" name="password" type="password"></ion-input>
+        </ion-item>
+
+
+      </ion-list>
+
+
+
+      <button class="login-button" ion-button type="submit" [disabled]="!loginForm.valid" block outline>เข้าสู่ระบบ</button>
+    </form>
+  </div>
+</ion-content>

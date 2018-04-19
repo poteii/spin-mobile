@@ -1,0 +1,146 @@
+page-login {
+  .content-header {
+    display: inherit;
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+  $blue: rgb(65, 116, 190);
+  .background {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background: linear-gradient(to bottom, #520000, #ff0000);
+  }
+  .centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  img {
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -webkit-animation: fadein 1s;
+    -o-animation: fadein 1s;
+  }
+  .login-box {
+    width: 330px; // height: 400px;
+  }
+  .form-signin {
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -webkit-animation: fadein 1s;
+    -o-animation: fadein 1s;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    .input-group-text {
+      background-color: white;
+      border-right: 0;
+    }
+    .username.input-group-text {
+      border: 0px;
+      width: 42px;
+      border-bottom-left-radius: 0;
+    }
+    .password.input-group-text {
+      border: 0px;
+      width: 42px;
+      border-top-left-radius: 0;
+    }
+    .checkbox {
+      color: white;
+      font-weight: normal;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .form-control {
+      position: relative;
+      height: auto;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .form-control:focus {
+      z-index: 2;
+    }
+    input[type="text"] {
+      outline: none;
+      outline-style: none;
+      box-shadow: none;
+      border-color: transparent; // border-left: 0;
+      border: 0px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    input[type="password"] {
+      outline-style: none;
+      box-shadow: none;
+      border-color: transparent; // border-left: 0;
+      border: 0px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    button[type="submit"] {
+      background: $blue;
+      color: white;
+    }
+    .d-block {
+      height: 39px;
+    }
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @-moz-keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @-webkit-keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @-o-keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes rotation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(359deg);
+      }
+    }
+    @supports (-ms-ime-align: auto) {
+      /* Microsoft EdgeV13&14 CSS styles go here */
+      .group-username {
+        margin-bottom: -1px !important;
+        border-bottom: 2px solid #ccc !important;
+      }
+    }
+    .group-username {
+      margin-bottom: -2px;
+      border-bottom: 4px solid #ccc
+    }
+  }
+}
