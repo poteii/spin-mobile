@@ -10,6 +10,7 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestService } from '../providers/utils/http-request.service';
 import { AuthInterceptor } from './auth.interceptor';
+import { ControllerProvider } from '../providers/controller/controller';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthInterceptor } from './auth.interceptor';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthenticationProvider,
-    HttpRequestService
+    HttpRequestService,
+    ControllerProvider
   ]
 })
 export class AppModule { }

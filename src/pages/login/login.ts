@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { User } from '../../models/user';
 import { Status } from '../../config/properties';
 import { HomePage } from '../home/home';
+import { ControllerProvider } from '../../providers/controller/controller';
 
 
 @IonicPage()
@@ -15,7 +16,8 @@ import { HomePage } from '../home/home';
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private loadingCtrl: LoadingController, private auth: AuthenticationProvider) {
+    private auth: AuthenticationProvider,
+    private ctrl: ControllerProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,26 +36,31 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    const loading = this.loadingCtrl.create({
-      content: "กรุณารอสักครู่...",
-      cssClass: "loadingCustomCss"
-    });
-    loading.present();
+    this.ctrl.loaderPresent("กรุณารอสักครู่...");
 
     let user: User = new User();
 
     let result = false;
-    let logonResult = await this.auth.authen(this.loginForm.value.username, this.loginForm.value.password);
-    if (logonResult === Status.SUCCESS) {
-      result = true;
-      await this.auth.accessUser();
-      loading.dismiss();
-      this.navCtrl.push(HomePage);
-      console.log(this.auth.getUser().officer);
-    } else {
-      result = true;
-      console.log(Status.ERROR);
-    }
+    await setTimeout(async () => {
+      let logonResult = await this.auth.authen(this.loginForm.value.username, this.loginForm.value.password);
+      if (logonResult === Status.SUCCESS) {
+        result = true;
+        await this.auth.accessUser();
+        this.ctrl.loaderDismiss();
+        this.navCtrl.push(HomePage);
+        console.log(this.auth.getUser().officer);
+      } else {
+        result = false;
+        console.log(Status.ERROR);
+      }
+
+      setTimeout(() => {
+        if (!result) {
+          this.ctrl.loaderDismiss();
+          this.ctrl.alertPresent("กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
+        }
+      }, 5000);
+    }, 2500)
   }
 
 }
