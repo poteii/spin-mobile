@@ -25,9 +25,10 @@ export class ControllerProvider {
   }
 
 
-  alertPresent(content) {
+  alertPresent(title, subTitle) {
     this.alert = this.alertCtrl.create({
-      subTitle: content
+      title: title,
+      subTitle: subTitle
     });
     this.alert.present();
   }

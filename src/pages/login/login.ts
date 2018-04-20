@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
       setTimeout(() => {
         if (!result) {
           this.ctrl.loaderDismiss();
-          this.ctrl.alertPresent("กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
+          this.ctrl.alertPresent("เกิดข้อผิดพลาด", "กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
         }
       }, 5000);
     }, 2500)

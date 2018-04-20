@@ -8,7 +8,7 @@
 
 <ion-content padding>
   The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-datetime [(ngModel)]="date" displayFormat="DDDD MMM D, YYYY" monthNames="มกราคม, กุมภาพันธ์, มีนาคม, เมษายน, พฤษภาคม, มิถุนายน, กรกฎาคม, สิงหาคม, กันยายน, ตุลาคม, พฤศจิกายน, ธันวาคม"
+    monthShortNames="ม.ค., ก.พ., มี.ค., เม.ย., พ.ค., มิ.ย., ก.ค., ส.ค., ก.ย., ต.ค., พ.ย., ธ.ค." dayNames="อาทิตย์, จันทร์, อังคาร, พุธ, พฤหัส, ศุกร์, เสาร์, อาทิตย์"
+    dayShortNames="อา, จ, อ, พ, พฤ, ศ, ส, อา"></ion-datetime>
 </ion-content>
