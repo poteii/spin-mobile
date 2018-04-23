@@ -1,5 +1,5 @@
 //url สำหรับยิงไป server
-export const URL = 'http://10.1.87.3:8081/';
+export const URL = 'http://172.17.3.49:8080/spin/';
 
 //default ต่างๆที่ใช้ในระบบ เกี่ยวกับ auth
 export const Default = {

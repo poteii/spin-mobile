@@ -1,0 +1,81 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>รายละเอียด</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+              <ion-label floating>วันที่ *</ion-label>
+              <ion-datetime displayFormat="DD MMMM YYYY" [(ngModel)]="myDate"></ion-datetime>
+            </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+            <ion-label floating>สีพื้นหลัง</ion-label>
+            <ion-select class="width-100" [(ngModel)]="bgColor" >
+              <ion-option value="l-blue" [class.background-color]="bgColor">blue</ion-option>
+              <ion-option value="n64">n64</ion-option>
+              <ion-option value="ps">ps</ion-option>
+              <ion-option value="genesis">genesis</ion-option>
+              <ion-option value="saturn">saturn</ion-option>
+              <ion-option value="snes">snes</ion-option>
+            </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label floating>เวลาเริ่ม *</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="startTime" minuteValues="0,30"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+          <ion-item>
+              <ion-label floating>เวลาสิ้นสุด *</ion-label>
+              <ion-datetime displayFormat="HH:mm" [(ngModel)]="endTime" minuteValues="0,30" [min]="startTime"></ion-datetime>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+            <ion-label floating>หัวข้อ *</ion-label>
+            <ion-input type="text" value=""></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-label>
+        <ion-label>กิจกรรม</ion-label>
+      </ion-label>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>ประเภท</ion-label>
+              <ion-select interface="action-sheet">
+                <ion-option value="{{type}}" *ngFor="let type of taskTypeList" > {{type}} </ion-option>
+              </ion-select>
+        </ion-item>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-label>
+              โครงการ *
+          </ion-label>
+          <ion-item>
+            <ion-input autocomplete="on"></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
