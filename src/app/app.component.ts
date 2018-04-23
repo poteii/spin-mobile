@@ -5,18 +5,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // import { HomePage } from '../pages/home/home';
-import { TaskModalPage } from '../pages/task-modal/task-modal';
-import { TaskPage } from '../pages/task/task';
-import { TaskTabsPage } from '../pages/task-tabs/task-tabs';
-import { TaskDetailPage } from '../pages/task-detail/task-detail';
 
 @Component({
   templateUrl: 'app.html'
 })
 
 export class MyApp {
-  // rootPage: any = 'LoginPage';
-  rootPage: any = TaskDetailPage;
+  rootPage: any = 'LoginPage';
+  //rootPage: any = TaskDetailPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

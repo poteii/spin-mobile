@@ -1,11 +1,14 @@
+import { Injectable } from '@angular/core';
 import { HttpRequestService } from './utils/http-request.service';
-export class TaskService{
 
-  constructor(private request: HttpRequestService){
+@Injectable()
+export class TaskService {
+
+  constructor(private request: HttpRequestService) {
 
   }
 
-  getCatagory(){
+  getCatagory() {
     return this.request.requestMethodGET(`category-management/categories`);
   }
 }
