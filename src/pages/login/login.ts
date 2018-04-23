@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
         result = true;
         await this.auth.accessUser();
         this.ctrl.loaderDismiss();
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push('TabPage');
         console.log(this.auth.getUser().officer);
       } else {
         result = false;
@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
       setTimeout(() => {
         if (!result) {
           this.ctrl.loaderDismiss();
-          this.ctrl.alertPresent("กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
+          this.ctrl.alertPresent("เกิดข้อผิดพลาด", "กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
         }
       }, 5000);
     }, 2500)
