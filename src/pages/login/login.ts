@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
         result = true;
         await this.auth.accessUser();
         this.ctrl.loaderDismiss();
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push('TabPage');
         console.log(this.auth.getUser().officer);
       } else {
         result = false;
