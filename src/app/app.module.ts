@@ -22,6 +22,7 @@ import { TaskPartnerPage } from '../pages/task-partner/task-partner';
 import { TaskTagPage } from '../pages/task-tag/task-tag';
 import { TaskDetailPage } from '../pages/task-detail/task-detail';
 import { TaskService } from '../providers/taskService';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { TaskService } from '../providers/taskService';
       monthNames: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
       monthShortNames: ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."],
     }),
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
