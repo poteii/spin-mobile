@@ -3,24 +3,36 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-// import { HomePage } from '../pages/home/home';
+import { MSG } from '../config/properties';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { HomePage } from '../pages/home/home';
+import { WorkTimePage } from '../pages/work-time/work-time';
 
 @Component({
   templateUrl: 'app.html'
 })
 
 export class MyApp {
-  rootPage: any = 'LoginPage';
-  //rootPage: any = TaskDetailPage;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  rootPage: any;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private auth: AuthenticationProvider) {
+    
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.isAuthorized();
     });
+  }
+
+  async isAuthorized() {
+    let status = await this.auth.accessUser()
+    console.log(status)
+    if (status === MSG.SUCCESS) {
+      let homePage = HomePage;
+      let workTimePage = WorkTimePage;
+      this.rootPage = workTimePage;
+    } else {
+      this.rootPage = 'LoginPage';
+    }
   }
 }
 

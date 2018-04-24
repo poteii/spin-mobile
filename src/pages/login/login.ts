@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
-import { User } from '../../models/user';
-import { Status } from '../../config/properties';
 import { HomePage } from '../home/home';
 import { ControllerProvider } from '../../providers/controller/controller';
+import { MSG, VARIABLE } from '../../config/properties';
 
 
 @IonicPage()
@@ -15,13 +14,9 @@ import { ControllerProvider } from '../../providers/controller/controller';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController,
     private auth: AuthenticationProvider,
     private ctrl: ControllerProvider) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   ngOnInit() {
@@ -37,30 +32,31 @@ export class LoginPage implements OnInit {
 
   async login() {
     this.ctrl.loaderPresent("กรุณารอสักครู่...");
+    if (this.loginForm.valid) {
 
-    let user: User = new User();
-
-    let result = false;
-    await setTimeout(async () => {
-      let logonResult = await this.auth.authen(this.loginForm.value.username, this.loginForm.value.password);
-      if (logonResult === Status.SUCCESS) {
-        result = true;
-        await this.auth.accessUser();
-        this.ctrl.loaderDismiss();
-        this.navCtrl.push('TabPage');
-        console.log(this.auth.getUser().officer);
+      // Rememberme
+      localStorage.setItem(VARIABLE.REFRESH_PWD, btoa(this.loginForm.value.password));
+      if (this.loginForm.value.remember) {
+        localStorage.setItem(VARIABLE.USR, btoa(this.loginForm.value.username));
+        localStorage.setItem(VARIABLE.PWD, btoa(this.loginForm.value.password));
+        localStorage.setItem(VARIABLE.RMB, 'Default');
       } else {
-        result = false;
-        console.log(Status.ERROR);
+        localStorage.removeItem(VARIABLE.USR);
+        localStorage.removeItem(VARIABLE.PWD);
+        localStorage.removeItem(VARIABLE.RMB);
       }
 
-      setTimeout(() => {
-        if (!result) {
-          this.ctrl.loaderDismiss();
-          this.ctrl.alertPresent("เกิดข้อผิดพลาด", "กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
-        }
-      }, 5000);
-    }, 2500)
+      // Auth
+      let response = await this.auth.authen(this.loginForm.value.username, this.loginForm.value.password);
+      if (response === MSG.SUCCESS) {
+        let homePage = HomePage;
+        this.navCtrl.setRoot(homePage)
+        this.ctrl.loaderDismiss();
+      } else {
+        this.ctrl.loaderDismiss();
+        this.ctrl.alertPresent("เกิดข้อผิดพลาด", "กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน");
+      }
+    }
   }
 
 }

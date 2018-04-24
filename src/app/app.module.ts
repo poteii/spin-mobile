@@ -7,9 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpRequestService } from '../providers/utils/http-request.service';
-import { AuthInterceptor } from './auth.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { ControllerProvider } from '../providers/controller/controller';
 
 
@@ -23,6 +21,9 @@ import { TaskTagPage } from '../pages/task-tag/task-tag';
 import { TaskDetailPage } from '../pages/task-detail/task-detail';
 import { TaskService } from '../providers/taskService';
 import { ComponentsModule } from '../components/components.module';
+import { HttpRequestProvider } from '../providers/utils/http-request';
+import { Interceptor } from '../providers/authentication/interceptor';
+import { WorkTimePage } from '../pages/work-time/work-time';
 
 
 @NgModule({
@@ -34,11 +35,13 @@ import { ComponentsModule } from '../components/components.module';
     TaskModalPage,
     TaskDetailPage,
     TaskPartnerPage,
-    TaskTagPage
+    TaskTagPage,
+    WorkTimePage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClientXsrfModule,
     IonicModule.forRoot(MyApp, {
       dayNames: ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์", "อาทิตย์"],
       dayShortNames: ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส", "อา"],
@@ -56,15 +59,16 @@ import { ComponentsModule } from '../components/components.module';
     TaskModalPage,
     TaskDetailPage,
     TaskPartnerPage,
-    TaskTagPage
+    TaskTagPage,
+    WorkTimePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
     AuthenticationProvider,
-    HttpRequestService,
+    HttpRequestProvider,
     TaskService,
     ControllerProvider
   ]

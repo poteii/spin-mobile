@@ -1,12 +1,12 @@
 import { Injectable, Renderer } from '@angular/core';
-import { Format } from '../../config/properties';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { FORMAT } from '../../config/properties';
 declare var moment: any;
 
 @Injectable()
-export class UtilsService {
+export class UtilsProvider {
 
   public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -15,56 +15,56 @@ export class UtilsService {
   }
 
   getCurrentThDate(): string {
-    let crr = moment().format(Format.DATE_DB);
+    let crr = moment().format(FORMAT.DATE_DB);
     let monthDate = crr.substring(4);
     return `${this.convertToThYearStrByEnDate(crr)}${monthDate}`
   }
 
   getCurrentEnDate(): string {
-    return `${moment().format(Format.DATE_DB)}`;
+    return `${moment().format(FORMAT.DATE_DB)}`;
   }
 
   getCurrentThMonth(): string {
-    return `${moment().format(Format.MM)}`
+    return `${moment().format(FORMAT.MM)}`
   }
 
   getCuurentThYear(): string {
-    return `${this.convertToThYearStr(moment().format(Format.YYYY))}`
+    return `${this.convertToThYearStr(moment().format(FORMAT.YYYY))}`
   }
 
   getThDayWord(enDate): string {
-    var day = moment(enDate, Format.DATE_DB);
-    var thday = day.format(Format.DDDD);
+    var day = moment(enDate, FORMAT.DATE_DB);
+    var thday = day.format(FORMAT.DDDD);
     return `${thday}`
   }
 
   getThGetDate(enDate): string {
-    var date = moment(enDate, Format.DATE_DB);
-    var thdate = date.format(Format.DD);
+    var date = moment(enDate, FORMAT.DATE_DB);
+    var thdate = date.format(FORMAT.DD);
     return `${thdate}`
   }
 
   getThMonthWord(enDate): string {
-    var month = moment(enDate, Format.DATE_DB);
-    var thmonth = month.format(Format.MMMM);
+    var month = moment(enDate, FORMAT.DATE_DB);
+    var thmonth = month.format(FORMAT.MMMM);
     return `${thmonth}`
   }
 
   getThMonthShortWord(enDate): string {
-    var month = moment(enDate, Format.DATE_DB);
-    var thmonth = month.format(Format.MMM);
+    var month = moment(enDate, FORMAT.DATE_DB);
+    var thmonth = month.format(FORMAT.MMM);
     return `${thmonth}`
   }
 
   getThMonth(enDate): string {
-    var month = moment(enDate, Format.DATE_DB);
-    var thmonth = month.format(Format.MM);
+    var month = moment(enDate, FORMAT.DATE_DB);
+    var thmonth = month.format(FORMAT.MM);
     return `${thmonth}`
   }
 
   getThYear(enDate): string {
-    var year = moment(enDate, Format.DATE_DB);
-    var thyear = year.format(Format.YYYY);
+    var year = moment(enDate, FORMAT.DATE_DB);
+    var thyear = year.format(FORMAT.YYYY);
     return `${this.convertToThYearStr(thyear)}`
   }
 
@@ -74,22 +74,22 @@ export class UtilsService {
   }
 
   getPreviousDay(enDate): string {
-    var previousDay = moment(enDate, Format.DATE_DB).subtract(1, 'days').format(Format.DATE_DB);
+    var previousDay = moment(enDate, FORMAT.DATE_DB).subtract(1, 'days').format(FORMAT.DATE_DB);
     return previousDay;
   }
 
   getPreviousWeekDate(enDate): string {
-    var previousWeekDay = moment(enDate, Format.DATE_DB).subtract(7, 'days').format(Format.DATE_DB);
+    var previousWeekDay = moment(enDate, FORMAT.DATE_DB).subtract(7, 'days').format(FORMAT.DATE_DB);
     return previousWeekDay;
   }
 
   getNextDay(enDate): string {
-    var nextDay = moment(enDate, Format.DATE_DB).add(1, 'days').format(Format.DATE_DB);
+    var nextDay = moment(enDate, FORMAT.DATE_DB).add(1, 'days').format(FORMAT.DATE_DB);
     return nextDay;
   }
 
   getStartOfWeek(enDate, isBE): string {
-    var startWeek = moment(enDate, Format.DATE_DB).startOf('week').format(Format.DATE_DB);
+    var startWeek = moment(enDate, FORMAT.DATE_DB).startOf('week').format(FORMAT.DATE_DB);
     if (isBE) {
       return this.convertEnDateToTh(startWeek);
     }
@@ -97,7 +97,7 @@ export class UtilsService {
   }
 
   getEndOfWeek(enDate, isBE): string {
-    var startWeek = moment(enDate, Format.DATE_DB).endOf('week').format(Format.DATE_DB);
+    var startWeek = moment(enDate, FORMAT.DATE_DB).endOf('week').format(FORMAT.DATE_DB);
     if (isBE) {
       return this.convertEnDateToTh(startWeek);
     }
@@ -149,7 +149,7 @@ export class UtilsService {
     let split = thDate.split(' ', 3)
     let datemonth = `${split[0]} ${split[1]}`;
     let year = split[2];
-    var date = moment(datemonth, Format.DATE_PIKC).format(Format.DATE_PIKR)
+    var date = moment(datemonth, FORMAT.DATE_PIKC).format(FORMAT.DATE_PIKR)
     return `${year}${date}`
   }
 
@@ -209,7 +209,7 @@ export class UtilsService {
 
   displayDayDate(thDate: string): string {
     let enDate = this.convertThDateToEn(thDate);
-    var day = moment(enDate, Format.DATE_DB).format('dd');
+    var day = moment(enDate, FORMAT.DATE_DB).format('dd');
     let date = this.getThGetDate(enDate);
     return `${day} ${Number(date)}`
   }
@@ -273,7 +273,7 @@ export class UtilsService {
 
   displayDay(thDate: string): string {
     let enDate = this.convertThDateToEn(thDate);
-    var day = moment(enDate, Format.DATE_DB).format('dddd');
+    var day = moment(enDate, FORMAT.DATE_DB).format('dddd');
     return `${day}`
   }
 }
