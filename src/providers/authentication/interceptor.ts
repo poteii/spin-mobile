@@ -17,7 +17,10 @@ export class Interceptor implements HttpInterceptor {
     isRefreshingToken: boolean = false;
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-    constructor(private auth: AuthenticationProvider, private xsrfTokenExt: HttpXsrfTokenExtractor) { }
+    constructor(
+        private auth: AuthenticationProvider, 
+        // private xsrfTokenExt: HttpXsrfTokenExtractor
+    ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
         return next.handle(this.addAuthorizationToken(req, this.auth.getAuthorizationHeader()))
