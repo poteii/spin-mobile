@@ -1,6 +1,5 @@
 import { TaskService } from './../../providers/taskService';
 import { Component } from '@angular/core';
-import { WorkingTime } from '../../config/properties';
 
 @Component({
   selector: 'page-task-detail',

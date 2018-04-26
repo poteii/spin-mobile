@@ -13,6 +13,7 @@ import { MSG, VARIABLE } from '../../config/properties';
   templateUrl: 'login.html',
 })
 export class LoginPage implements OnInit {
+  homePage = HomePage;
   loginForm: FormGroup;
   constructor(public navCtrl: NavController,
     private auth: AuthenticationProvider,
@@ -21,6 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.resetFormGroup();
+    this.isAuthorized();
   }
 
   resetFormGroup() {
@@ -33,7 +35,6 @@ export class LoginPage implements OnInit {
   async login() {
     this.ctrl.loaderPresent("กรุณารอสักครู่...");
     if (this.loginForm.valid) {
-
       // Rememberme
       localStorage.setItem(VARIABLE.REFRESH_PWD, btoa(this.loginForm.value.password));
       if (this.loginForm.value.remember) {
@@ -48,9 +49,9 @@ export class LoginPage implements OnInit {
 
       // Auth
       let response = await this.auth.authen(this.loginForm.value.username, this.loginForm.value.password);
+      console.log()
       if (response === MSG.SUCCESS) {
-        let homePage = HomePage;
-        this.navCtrl.setRoot(homePage)
+        this.navCtrl.setRoot(this.homePage)
         this.ctrl.loaderDismiss();
       } else {
         this.ctrl.loaderDismiss();
@@ -59,4 +60,15 @@ export class LoginPage implements OnInit {
     }
   }
 
+  async isAuthorized() {
+    this.ctrl.loaderPresent("กรุณารอสักครู่...");
+    await setTimeout(async () => {
+      let status = await this.auth.accessUser()
+      console.log(status)
+      if (status === MSG.SUCCESS) {
+        this.navCtrl.setRoot(this.homePage)
+      }
+      this.ctrl.loaderDismiss();
+    }, 1000)
+  }
 }
