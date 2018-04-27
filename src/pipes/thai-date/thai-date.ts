@@ -1,34 +1,34 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UtilsService } from '../../providers/utils/utils.service';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 
 @Pipe({
   name: 'thaiDate',
 })
 export class ThaiDatePipe implements PipeTransform {
-  constructor(private utilsService: UtilsService) { }
+  constructor(private utils: UtilsProvider) { }
 
   transform(value: any, displayType: any): any {
     if (value) {
       if (displayType) {
         switch (displayType) {
           case 'stamptable': {
-            return this.utilsService.displayTimestampDate(value)
+            return this.utils.displayTimestampDate(value)
           }
           case 'calendar': {
-            return this.utilsService.displayCalendarDate(value);
+            return this.utils.displayCalendarDate(value);
           }
           case 'short': {
-            return this.utilsService.displayShortDate(value);
+            return this.utils.displayShortDate(value);
           }
           case 'full': {
-            return this.utilsService.displayFullDate(value);
+            return this.utils.displayFullDate(value);
           }
           case 'day': {
-            return this.utilsService.displayDayDate(value);
+            return this.utils.displayDayDate(value);
           }
           case 'dayfull': {
-            return this.utilsService.displayDay(value);
+            return this.utils.displayDay(value);
           }
         }
       }

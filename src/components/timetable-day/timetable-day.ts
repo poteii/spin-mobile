@@ -1,6 +1,6 @@
 
 import { Component, AfterViewInit } from '@angular/core';
-import { WorkingTime } from '../../config/properties';
+import { WORKINGTIME } from '../../config/properties';
 
 
 declare var $: any;
@@ -10,7 +10,7 @@ declare var $: any;
 })
 export class TimetableDayComponent implements AfterViewInit {
 
-  public worktable = WorkingTime; // time list
+  public worktable = WORKINGTIME; // time list
   public enDateStr = '';
   public holidayName = '';
 
@@ -19,7 +19,6 @@ export class TimetableDayComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.spinTimestamp();
-    $(".scrolling").scrollTop(242);
   }
 
   spinTimestamp() {
