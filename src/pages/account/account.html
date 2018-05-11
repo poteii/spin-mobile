@@ -1,18 +1,14 @@
-<!--
-  Generated template for the AccountPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>account</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+<ion-content padding class="bg">
+  <div class="profile-image">
+    <img class="img" src="../../assets/imgs/profile/profile.png">
+  </div>
+  <div text-center>
+    {{user.officer.firstNameTh}} {{user.officer.lastNameTh}}
+  </div>
+  <div text-center primary>
+    {{user.userId}}
+  </div>
+  <div text-center>
+    {{user.email}}
+  </div>
 </ion-content>

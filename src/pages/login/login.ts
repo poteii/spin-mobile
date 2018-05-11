@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
       let response = await this.auth.authen(this.loginForm.value.username, this.loginForm.value.password);
       console.log()
       if (response === MSG.SUCCESS) {
-        this.navCtrl.setRoot(this.homePage)
+        this.navCtrl.setRoot('TabPage');
         this.ctrl.loaderDismiss();
       } else {
         this.ctrl.loaderDismiss();
@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
       let status = await this.auth.accessUser()
       console.log(status)
       if (status === MSG.SUCCESS) {
-        this.navCtrl.setRoot(this.homePage)
+        this.navCtrl.setRoot('TabPage')
       }
       this.ctrl.loaderDismiss();
     }, 1000)
