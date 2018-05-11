@@ -24,7 +24,6 @@ import { ComponentsModule } from '../components/components.module';
 import { HttpRequestProvider } from '../providers/utils/http-request';
 import { Interceptor } from '../providers/authentication/interceptor';
 import { WorkTimePage } from '../pages/work-time/work-time';
-import { LoginPage } from '../pages/login/login';
 
 
 @NgModule({
@@ -37,8 +36,7 @@ import { LoginPage } from '../pages/login/login';
     TaskDetailPage,
     TaskPartnerPage,
     TaskTagPage,
-    WorkTimePage,
-    LoginPage
+    WorkTimePage
   ],
   imports: [
     BrowserModule,
@@ -62,8 +60,7 @@ import { LoginPage } from '../pages/login/login';
     TaskDetailPage,
     TaskPartnerPage,
     TaskTagPage,
-    WorkTimePage,
-    LoginPage
+    WorkTimePage
   ],
   providers: [
     StatusBar,

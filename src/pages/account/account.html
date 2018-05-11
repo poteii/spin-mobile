@@ -1,14 +1,19 @@
 <ion-content padding class="bg">
   <div class="profile-image">
-    <img class="img" src="../../assets/imgs/profile/profile.png">
+    <!-- <img class="img" src="../../assets/imgs/profile/profile.png"> -->
+    <i class="fas fa-user fa-5x"></i>
   </div>
   <div text-center>
     {{user.officer.firstNameTh}} {{user.officer.lastNameTh}}
   </div>
-  <div text-center primary>
+  <div text-center class="text-color-red">
     {{user.userId}}
   </div>
   <div text-center>
     {{user.email}}
+  </div>
+  <div class="spacer" style="height: 50px;"></div>
+  <div text-center>
+    <button ion-button round (click)="logout()">ออกจากระบบ</button>
   </div>
 </ion-content>

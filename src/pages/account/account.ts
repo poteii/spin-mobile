@@ -26,4 +26,9 @@ export class AccountPage implements OnInit {
     console.log(this.user);
   }
 
+  logout() {
+    this.auth.logout();
+    this.navCtrl.parent.parent.setRoot('LoginPage');
+  }
+
 }

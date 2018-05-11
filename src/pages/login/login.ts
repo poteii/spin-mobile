@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.resetFormGroup();
-    this.isAuthorized();
+    //  this.isAuthorized();
   }
 
   resetFormGroup() {
