@@ -1,1 +1,16 @@
-page-tab {}
+page-tab {
+  .tabs-ios .tabbar {
+    border-color: white;
+    background: #B7000C;
+  }
+  .tabs-ios .tab-button-icon {
+    color: #000000;
+  }
+  .tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color: #FFFFFF;
+  }
+  .tabs-ios[tabsLayout=title-hide] .tab-button,
+  .tabs-ios .tab-button.icon-only {
+    min-height: 60px;
+  }
+}

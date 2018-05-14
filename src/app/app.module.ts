@@ -36,7 +36,7 @@ import { WorkTimePage } from '../pages/work-time/work-time';
     TaskDetailPage,
     TaskPartnerPage,
     TaskTagPage,
-    WorkTimePage
+    //  WorkTimePage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +60,7 @@ import { WorkTimePage } from '../pages/work-time/work-time';
     TaskDetailPage,
     TaskPartnerPage,
     TaskTagPage,
-    WorkTimePage
+    //    WorkTimePage
   ],
   providers: [
     StatusBar,
