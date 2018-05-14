@@ -1,16 +1,16 @@
 page-tab {
-  .tabs-ios .tabbar {
+  .tabs .tabbar {
     border-color: white;
     background: #B7000C;
   }
-  .tabs-ios .tab-button-icon {
+  .tabs .tab-button-icon {
     color: #000000;
   }
-  .tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+  .tabs .tab-button[aria-selected=true] .tab-button-icon {
     color: #FFFFFF;
   }
-  .tabs-ios[tabsLayout=title-hide] .tab-button,
-  .tabs-ios .tab-button.icon-only {
+  .tabs[tabsLayout=title-hide] .tab-button,
+  .tabs .tab-button.icon-only {
     min-height: 60px;
   }
 }
